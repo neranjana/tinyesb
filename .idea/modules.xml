@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/orchestration/orchestration.iml" filepath="$PROJECT_DIR$/orchestration/orchestration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tinyesb.iml" filepath="$PROJECT_DIR$/tinyesb.iml" />
+    </modules>
+  </component>
+</project>
