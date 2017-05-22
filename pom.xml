@@ -9,6 +9,9 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>orchestration</module>
+        <module>ensemble</module>
+        <module>plugintypes</module>
+        <module>java2yaml</module>
     </modules>
 
     <packaging>pom</packaging>
