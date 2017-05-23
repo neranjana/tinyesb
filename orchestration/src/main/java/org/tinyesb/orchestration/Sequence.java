@@ -30,4 +30,11 @@ public class Sequence extends AbstractExecutable {
         this.executableList.add(executable);
     }
 
+    public List<Executable> getExecutableList() {
+        return executableList;
+    }
+
+    public void setExecutableList(List<Executable> executableList) {
+        this.executableList = executableList;
+    }
 }

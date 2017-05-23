@@ -3,16 +3,14 @@ package org.tinyesb.codec.yaml;
 import org.tinyesb.codec.DecodeException;
 import org.tinyesb.codec.EncodeException;
 import org.tinyesb.codec.Java2TextCodec;
+import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Created by neran on 22/05/2017.
+ * Created by Neranjana Karunaratne on 22/05/2017.
  */
 class Java2YamlCodecTest {
 
@@ -35,6 +33,20 @@ class Java2YamlCodecTest {
             "  mobile: \"0487654321\"\n" +
             "  home: \"0312345678\"\n";
 
+    private static final String MAP_YAML_STRING = "---\n" +
+            "key1: \"value1\"\n" +
+            "key2: \"value2\"\n" +
+            "firstMap:\n" +
+            "  firstMapList1:\n" +
+            "  - \"listitem1\"\n" +
+            "  - \"listitem2\"\n" +
+            "  - \"listitem3\"\n" +
+            "  firstMapKey2: \"firstMapValue2\"\n" +
+            "  secondMap:\n" +
+            "    secondMapKey3: \"secondMapValue3\"\n" +
+            "    secondMapKey1: \"secondMapValue1\"\n" +
+            "    secondMapKey2: \"secondMapValue2\"\n" +
+            "  firstMapKey1: \"firstMapValue1\"\n";
 
     @org.junit.jupiter.api.Test
     void encode() throws EncodeException {
@@ -66,4 +78,27 @@ class Java2YamlCodecTest {
         return john;
     }
 
+    @Test
+    void encodeMap() throws EncodeException, DecodeException {
+        Java2TextCodec codec = new Java2YamlCodec();
+        Map<Object, Object> topMap = new HashMap<>();
+        topMap.put("key1", "value1");
+        Map<Object, Object> firstMap = new HashMap<>();
+        firstMap.put("firstMapKey1", "firstMapValue1");
+        firstMap.put("firstMapKey2", "firstMapValue2");
+        firstMap.put("firstMapList1", Arrays.asList("listitem1", "listitem2", "listitem3"));
+        Map<Object, Object> secondMap = new HashMap();
+        secondMap.put("secondMapKey1", "secondMapValue1");
+        secondMap.put("secondMapKey2", "secondMapValue2");
+        secondMap.put("secondMapKey3", "secondMapValue3");
+        firstMap.put("secondMap", secondMap);
+        topMap.put("firstMap", firstMap);
+        topMap.put("key2", "value2");
+
+        String yaml = codec.encode(topMap);
+        assertEquals(MAP_YAML_STRING, yaml);
+
+        Object object = codec.decode(MAP_YAML_STRING, Object.class);
+        assertEquals(topMap, object);
+    }
 }

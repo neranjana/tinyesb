@@ -1,11 +1,11 @@
 package org.tinyesb.codec.yaml;
 
-import org.tinyesb.codec.DecodeException;
-import org.tinyesb.codec.EncodeException;
-import org.tinyesb.codec.Java2TextCodec;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import org.tinyesb.codec.DecodeException;
+import org.tinyesb.codec.EncodeException;
+import org.tinyesb.codec.Java2TextCodec;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class Java2YamlCodec implements Java2TextCodec {
 
-    ObjectMapper mapper;
+    private ObjectMapper mapper;
 
     public Java2YamlCodec() {
         this.mapper = new ObjectMapper(new YAMLFactory());

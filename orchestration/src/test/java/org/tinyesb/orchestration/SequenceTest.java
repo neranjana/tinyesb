@@ -14,9 +14,9 @@ public class SequenceTest {
         // given
 
         // create 3 executables
-        Executable executable1 = new TestExecutable("executable1");
-        Executable executable2 = new TestExecutable("executable2");
-        Executable executable3 = new TestExecutable("executable3");
+        Executable executable1 = new TestActivity("activity1");
+        Executable executable2 = new TestActivity("activity2");
+        Executable executable3 = new TestActivity("activity3");
 
         // create one sequance
         Sequence sequence = new Sequence("sequence1");
@@ -43,9 +43,9 @@ public class SequenceTest {
 
 
         // each child execution status should have the id of its executable
-        assertEquals("executable1", status.getChildren().get(0).getExecutableId());
-        assertEquals("executable2", status.getChildren().get(1).getExecutableId());
-        assertEquals("executable3", status.getChildren().get(2).getExecutableId());
+        assertEquals("activity1", status.getChildren().get(0).getExecutableId());
+        assertEquals("activity2", status.getChildren().get(1).getExecutableId());
+        assertEquals("activity3", status.getChildren().get(2).getExecutableId());
 
         // each child execution status should also be completed
         assertEquals(true, status.getChildren().get(0).isComplete());
@@ -54,25 +54,4 @@ public class SequenceTest {
 
     }
 
-    // test executable which simply sets its execution status to true
-    private class TestExecutable implements Executable {
-
-        private String id;
-
-        public TestExecutable(String id) {
-            this.id = id;
-        }
-
-        @Override
-        public ExecutionStatus doExecute(Context context) throws ExecutionException {
-            ExecutionStatus executionStatus = new ExecutionStatus(id);
-            executionStatus.setComplete();
-            return executionStatus;
-        }
-
-        @Override
-        public String getId() {
-            return id;
-        }
-    }
 }

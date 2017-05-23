@@ -39,6 +39,4 @@ public abstract class AbstractExecutable implements Executable {
     }
 
 
-
-
 }
