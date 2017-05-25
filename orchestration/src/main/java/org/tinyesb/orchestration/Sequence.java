@@ -2,39 +2,40 @@ package org.tinyesb.orchestration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Neranjana Karunaratne on 21/05/2017.
  */
 public class Sequence extends AbstractExecutable {
 
-    ExecutionStatus executionStatus;
-    List<Executable> executableList;
+    protected Map<String, Executable> executableMap;
 
     public Sequence(String id) {
         this.id = id;
         this.executionStatus = new ExecutionStatus(id);
-        this.executableList = new ArrayList<>();
+        this.executableMap = new ConcurrentHashMap<>();
     }
 
     @Override
     public ExecutionStatus doExecute(Context context) throws ExecutionException {
-        for (Executable executable : executableList) {
+        for (Executable executable : executableMap.values()) {
             executionStatus.addChild((executable.doExecute(context)));
         }
         this.executionStatus.setComplete();
         return executionStatus;
     }
 
-    public void addExecutable(Executable executable) {
-        this.executableList.add(executable);
+    public void addExecutable(String id, Executable executable) {
+        this.executableMap.put(id, executable);
     }
 
-    public List<Executable> getExecutableList() {
-        return executableList;
+    public Map<String, Executable> getExecutableMap() {
+        return executableMap;
     }
 
-    public void setExecutableList(List<Executable> executableList) {
-        this.executableList = executableList;
+    public void setExecutableMap(Map<String, Executable> executableMap) {
+        this.executableMap = executableMap;
     }
 }

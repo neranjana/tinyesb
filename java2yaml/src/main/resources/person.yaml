@@ -1,0 +1,18 @@
+---
+firstName: "John"
+lastName: "Smith"
+age: 50
+children:
+- firstName: "Sally"
+  lastName: "Smith"
+  age: 25
+  children: []
+  phoneNumbers: {}
+- firstName: "Tom"
+  lastName: "Smit"
+  age: 20
+  children: []
+  phoneNumbers: {}
+phoneNumbers:
+  mobile: "0487654321"
+  home: "0312345678"

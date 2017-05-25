@@ -6,6 +6,7 @@ package org.tinyesb.orchestration;
 public abstract class AbstractExecutable implements Executable {
 
     protected String id;
+    protected ExecutionStatus executionStatus;
 
     @Override
     public boolean equals(Object o) {

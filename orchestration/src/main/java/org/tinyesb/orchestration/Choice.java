@@ -11,7 +11,6 @@ import java.util.Map;
 public class Choice extends AbstractExecutable {
 
     private Map<Condition, Executable> conditionsMap;
-    private ExecutionStatus executionStatus;
     private Executable defaultExecutable;
 
     public Choice(String id) {

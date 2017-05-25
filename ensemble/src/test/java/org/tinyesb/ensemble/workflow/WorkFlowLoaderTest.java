@@ -24,9 +24,9 @@ class WorkFlowLoaderTest {
         // create one sequance
         Sequence sequence = new Sequence("sequence1");
         // add the executables to the sequence
-        sequence.addExecutable(executable1);
-        sequence.addExecutable(executable2);
-        sequence.addExecutable(executable3);
+        sequence.addExecutable("exec1", executable1);
+        sequence.addExecutable("exec2", executable2);
+        sequence.addExecutable("exec3", executable3);
 
         Java2TextCodec codec = new Java2YamlCodec();
 

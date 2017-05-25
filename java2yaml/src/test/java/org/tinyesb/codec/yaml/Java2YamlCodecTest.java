@@ -54,6 +54,7 @@ class Java2YamlCodecTest {
         Java2TextCodec codec = new Java2YamlCodec();
         String output = codec.encode(createTestPerson());
         assertEquals(YAML_STRING, output);
+        System.out.println(output);
 
 
     }
