@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ensemble" />
         <module name="java2yaml" />
+        <module name="jsshell" />
         <module name="orchestration" />
         <module name="plugintypes" />
       </profile>
@@ -16,6 +17,7 @@
       <module name="configureyaml" target="1.8" />
       <module name="ensemble" target="1.8" />
       <module name="java2yaml" target="1.8" />
+      <module name="jsshell" target="1.8" />
       <module name="orchestration" target="1.8" />
       <module name="plugintypes" target="1.8" />
       <module name="tinyesb" target="1.8" />

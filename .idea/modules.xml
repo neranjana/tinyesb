@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ensemble/ensemble.iml" filepath="$PROJECT_DIR$/ensemble/ensemble.iml" />
       <module fileurl="file://$PROJECT_DIR$/java2yaml/java2yaml.iml" filepath="$PROJECT_DIR$/java2yaml/java2yaml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jsshell/jsshell.iml" filepath="$PROJECT_DIR$/jsshell/jsshell.iml" />
       <module fileurl="file://$PROJECT_DIR$/orchestration/orchestration.iml" filepath="$PROJECT_DIR$/orchestration/orchestration.iml" />
       <module fileurl="file://$PROJECT_DIR$/plugintypes/plugintypes.iml" filepath="$PROJECT_DIR$/plugintypes/plugintypes.iml" />
       <module fileurl="file://$PROJECT_DIR$/tinyesb.iml" filepath="$PROJECT_DIR$/tinyesb.iml" />

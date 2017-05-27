@@ -9,7 +9,10 @@ public class ActivityExecutionStatus extends ExecutionStatus {
 
     private boolean isFinalyzationComplete;
 
+    private boolean isExecutionSuccess;
+
     public ActivityExecutionStatus(String executableId) {
+
         super(executableId);
     }
 
@@ -27,6 +30,14 @@ public class ActivityExecutionStatus extends ExecutionStatus {
 
     public void setFinalyzationComplete(boolean finalyzationComplete) {
         isFinalyzationComplete = finalyzationComplete;
+    }
+
+    public boolean isExecutionSuccess() {
+        return isExecutionSuccess;
+    }
+
+    public void setExecutionSuccess() {
+        isExecutionSuccess = true;
     }
 
     @Override

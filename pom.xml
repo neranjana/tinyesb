@@ -12,6 +12,7 @@
         <module>ensemble</module>
         <module>plugintypes</module>
         <module>java2yaml</module>
+        <module>jsshell</module>
     </modules>
 
     <packaging>pom</packaging>
