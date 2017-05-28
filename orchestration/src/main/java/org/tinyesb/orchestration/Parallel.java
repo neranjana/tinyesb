@@ -60,10 +60,6 @@ public class Parallel extends Sequence {
     }
 
     private boolean checkFinished() {
-        if (executionStatusMap.size() == executableMap.size()) {
-            return true;
-        } else {
-            return false;
-        }
+        return executionStatusMap.size() == executableMap.size();
     }
 }

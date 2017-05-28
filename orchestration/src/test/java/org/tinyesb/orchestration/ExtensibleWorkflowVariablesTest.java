@@ -219,7 +219,7 @@ class ExtensibleWorkflowVariablesTest {
         assertEquals(value3, variablesLevel3.get(key3));
 
 
-        assertEquals("value12new", variablesLevel2.get(key12));;
+        assertEquals("value12new", variablesLevel2.get(key12));
 
         assertEquals("value12new", variablesLevel3.get(key12));
 

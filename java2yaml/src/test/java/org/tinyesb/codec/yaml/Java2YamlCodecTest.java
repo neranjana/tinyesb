@@ -88,7 +88,7 @@ class Java2YamlCodecTest {
         firstMap.put("firstMapKey1", "firstMapValue1");
         firstMap.put("firstMapKey2", "firstMapValue2");
         firstMap.put("firstMapList1", Arrays.asList("listitem1", "listitem2", "listitem3"));
-        Map<Object, Object> secondMap = new HashMap();
+        Map<Object, Object> secondMap = new HashMap<>();
         secondMap.put("secondMapKey1", "secondMapValue1");
         secondMap.put("secondMapKey2", "secondMapValue2");
         secondMap.put("secondMapKey3", "secondMapValue3");
