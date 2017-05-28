@@ -72,6 +72,12 @@ class ExtensibleWorkflowVariablesTest {
 
     @Test
     void isEmpty() {
+        WorkflowVariables<String, String> emptyVariables = new ExtensibleWorkflowVariables<String, String>(Arrays.asList("1", "2"));
+        assertTrue(emptyVariables.isEmpty());
+        assertTrue(!variablesLevel3.isEmpty());
+        WorkflowVariables<String, String> notEmptyVariables = new ExtensibleWorkflowVariables<String, String>(Arrays.asList("1", "2"), variablesLevel2);
+        assertTrue(!notEmptyVariables.isEmpty());
+
     }
 
     @Test
