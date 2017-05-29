@@ -84,18 +84,17 @@ public class ExtensibleWorkflowVariables<K, V> implements WorkflowVariables<K, V
     public V put(K key, V value) {
 
         V previousValue;
-        if (isValidKey(key)) {
-            if (parentWorkflowVariables != null && parentWorkflowVariables.containsKey(key)) {
-                previousValue = parentWorkflowVariables.put(key, value);
-            } else {
-                previousValue = localWorkflowVariables.put(key, value);
-            }
-            return previousValue;
+        if (parentWorkflowVariables != null && parentWorkflowVariables.isValidKey(key)) {
+            // if variable key is valid in parent scope then add to parent scope
+            previousValue = parentWorkflowVariables.put(key, value);
+        } else if (isValidKey(key)) {
+            // if variable key is valid in this scope then add to this scope
+            previousValue = localWorkflowVariables.put(key, value);
         } else {
+            // if variable key is not valid then throw exception
             throw new IllegalArgumentException("Key : " + key + " is not defined as a variable name.");
         }
-
-
+        return previousValue;
 
     }
 
