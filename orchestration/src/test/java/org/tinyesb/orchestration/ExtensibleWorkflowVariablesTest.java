@@ -4,7 +4,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -201,11 +200,8 @@ class ExtensibleWorkflowVariablesTest {
         newValueMap.put(key23, "value23new");
 
 
-
         variablesLevel3.putAll(newValueMap);
-        for (Map.Entry<String, String> entry : variablesLevel3.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
-        }
+
         assertEquals("value1new", variablesLevel1.get(key1));
         assertEquals(value2, variablesLevel1.get(key2));
         assertEquals(value3, variablesLevel1.get(key3));
@@ -228,18 +224,55 @@ class ExtensibleWorkflowVariablesTest {
 
     @Test
     void clear() {
+        variablesLevel3.clear();
+        assertNull(variablesLevel3.get(key21));
+        assertNull(variablesLevel3.get(key22));
+        assertNull(variablesLevel3.get(key23));
+        assertEquals(6, variablesLevel3.size());
+        variablesLevel1.clear();
+        assertNull(variablesLevel3.get(key1));
+        assertNull(variablesLevel3.get(key2));
+        assertNull(variablesLevel3.get(key3));
+        assertEquals(3, variablesLevel3.size());
     }
 
     @Test
     void keySet() {
+        assertTrue(variablesLevel3.keySet().containsAll(Arrays.asList(key1, key2, key3, key11, key12, key13, key21, key22, key23)));
+        assertEquals(9, variablesLevel3.keySet().size());
+        assertTrue(variablesLevel3.keySet().containsAll(Arrays.asList(key1, key2, key3, key11, key12, key13)));
+        assertEquals(6, variablesLevel2.keySet().size());
+        assertTrue(variablesLevel3.keySet().containsAll(Arrays.asList(key1, key2, key3)));
+        assertEquals(3, variablesLevel1.keySet().size());
+
     }
 
     @Test
     void values() {
+        assertTrue(variablesLevel3.values().containsAll(Arrays.asList(value1, value2, value3, value11, value12, value13, value21, value22, value23)));
+        assertEquals(9, variablesLevel3.values().size());
+        assertTrue(variablesLevel3.values().containsAll(Arrays.asList(value1, value2, value3, value11, value12, value13)));
+        assertEquals(6, variablesLevel2.values().size());
+        assertTrue(variablesLevel3.values().containsAll(Arrays.asList(value1, value2, value3)));
+        assertEquals(3, variablesLevel1.values().size());
     }
 
     @Test
     void entrySet() {
+        Map<String, String> referenceMap = new HashMap<>();
+        referenceMap.put(key1, value1);
+        referenceMap.put(key2, value2);
+        referenceMap.put(key3, value3);
+        referenceMap.put(key11, value11);
+        referenceMap.put(key12, value12);
+        referenceMap.put(key13, value13);
+
+        assertTrue(referenceMap.keySet().containsAll(variablesLevel2.keySet()));
+
+        assertEquals(9, variablesLevel3.entrySet().size());
+        assertEquals(6, variablesLevel2.entrySet().size());
+        assertEquals(3, variablesLevel1.entrySet().size());
+
     }
 
 }
