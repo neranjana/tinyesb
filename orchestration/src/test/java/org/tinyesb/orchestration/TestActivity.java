@@ -1,9 +1,15 @@
 package org.tinyesb.orchestration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Created by Neranjana Karunaratne on 23/05/2017.
  */
 public class TestActivity implements Activity {
+
+    static Logger LOGGER = LoggerFactory.getLogger(TestActivity.class);
+
 
     private String id;
 
@@ -16,6 +22,7 @@ public class TestActivity implements Activity {
         ActivityExecutionStatus activityExecutionStatus = new ActivityExecutionStatus(id);
         workflowVariables.put(id + "-thread-id", Thread.currentThread().getName());
         activityExecutionStatus.setComplete();
+        LOGGER.info("TestActivity in " + parentExecutionPath + "/" + id);
         return activityExecutionStatus;
     }
 

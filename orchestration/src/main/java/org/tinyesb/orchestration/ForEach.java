@@ -1,5 +1,8 @@
 package org.tinyesb.orchestration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Collection;
 import java.util.Map;
 
@@ -8,6 +11,7 @@ import java.util.Map;
  */
 public class ForEach extends Parallel {
 
+    static Logger LOGGER = LoggerFactory.getLogger(ForEach.class);
     private String listVariableName;
 
     private String localVariableName;
@@ -29,6 +33,7 @@ public class ForEach extends Parallel {
 
     @Override
     public ExecutionStatus doExecute(String parentExecutionPath, Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException {
+        LOGGER.info("In ForEach doExecute top " + parentExecutionPath);
         Object listVariable = workflowVariables.get(listVariableName);
         long index = 0;
         if (listVariable != null && listVariable instanceof Collection) {
@@ -45,7 +50,7 @@ public class ForEach extends Parallel {
             }
         }
 
-        return super.doExecute(getExecutionPath(parentExecutionPath), context, workflowVariables);
+        return super.doExecute(parentExecutionPath, context, workflowVariables);
     }
 
 }

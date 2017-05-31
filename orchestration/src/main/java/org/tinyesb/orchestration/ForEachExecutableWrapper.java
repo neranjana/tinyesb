@@ -1,11 +1,15 @@
 package org.tinyesb.orchestration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Arrays;
 
 /**
  * Created by Neranjana Karunaratne on 31/05/2017.
  */
 public class ForEachExecutableWrapper extends AbstractExecutable {
+    static Logger LOGGER = LoggerFactory.getLogger(ForEachExecutableWrapper.class);
 
     private Executable executable;
 
@@ -22,6 +26,7 @@ public class ForEachExecutableWrapper extends AbstractExecutable {
 
     @Override
     public ExecutionStatus doExecute(String parentExecutionPath, Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException {
+        LOGGER.info("Parent Execution Path " + parentExecutionPath);
         WorkflowVariables<String, Object> localWorkflowVariables = new ExtensibleWorkflowVariables(Arrays.asList(instanceVariableName), workflowVariables);
         localWorkflowVariables.put(instanceVariableName, instanceVariable);
         return executable.doExecute(getExecutionPath(parentExecutionPath), context, localWorkflowVariables);
