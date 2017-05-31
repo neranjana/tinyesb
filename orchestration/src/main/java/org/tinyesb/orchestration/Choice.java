@@ -24,7 +24,7 @@ public class Choice extends AbstractExecutable {
     }
 
     @Override
-    public ExecutionStatus doExecute(Context context) throws ExecutionException {
+    public ExecutionStatus doExecute(Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException {
 
         boolean conditionMet = false;
 
@@ -34,7 +34,7 @@ public class Choice extends AbstractExecutable {
             Map.Entry<Condition, Executable> entry = conditionIterator.next();
             try {
                 if (entry.getKey().evaluate(context)) {
-                    ExecutionStatus childExecutionStatus = entry.getValue().doExecute(context);
+                    ExecutionStatus childExecutionStatus = entry.getValue().doExecute(context, workflowVariables);
                     this.executionStatus.addChild(childExecutionStatus);
                     conditionMet = true;
                     LOGGER.info("Choice :" + this.id + " evaluated success for condition:" + entry.getKey());
@@ -45,7 +45,7 @@ public class Choice extends AbstractExecutable {
         }
 
         if (!conditionMet && defaultExecutable != null) {
-            ExecutionStatus childExecutionStatus = defaultExecutable.doExecute(context);
+            ExecutionStatus childExecutionStatus = defaultExecutable.doExecute(context, workflowVariables);
             this.executionStatus.addChild(childExecutionStatus);
         }
 

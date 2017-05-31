@@ -2,6 +2,7 @@ package org.tinyesb.orchestration;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -33,16 +34,16 @@ class ParallelTest {
         Context context = new Context();
 
         // when
+        WorkflowVariables<String, Object> workflowVariables = new ExtensibleWorkflowVariables<String, Object>(Arrays.asList("activity1-thread-id", "activity2-thread-id", "activity3-thread-id"));
 
         // execute the sequence
-        ExecutionStatus status = parallel.doExecute(context);
+        ExecutionStatus status = parallel.doExecute(context, workflowVariables);
 
         // then
-        assertEquals(3, context.getVariables().size());
-        assertNotEquals(context.getVariable("activity1-thread-id"), context.getVariable("activity2-thread-id2"));
-        assertNotEquals(context.getVariable("activity1-thread-id"), context.getVariable("activity3-thread-id2"));
-        assertNotEquals(context.getVariable("activity3-thread-id"), context.getVariable("activity2-thread-id2"));
-
+        assertEquals(3, workflowVariables.size());
+        assertNotEquals(workflowVariables.get("activity1-thread-id"), workflowVariables.get("activity2-thread-id"));
+        assertNotEquals(workflowVariables.get("activity1-thread-id"), workflowVariables.get("activity3-thread-id"));
+        assertNotEquals(workflowVariables.get("activity3-thread-id"), workflowVariables.get("activity2-thread-id"));
 
     }
 

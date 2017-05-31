@@ -29,12 +29,12 @@ public class Parallel extends Sequence {
     }
 
     @Override
-    public ExecutionStatus doExecute(Context context) throws ExecutionException {
+    public ExecutionStatus doExecute(Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException {
 
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
 
         for (Map.Entry<String, Executable> entry : executableMap.entrySet()) {
-            ParallelExecutableWrapper executableWrapper = new ParallelExecutableWrapper(entry.getKey(), this, entry.getValue(), context);
+            ParallelExecutableWrapper executableWrapper = new ParallelExecutableWrapper(entry.getKey(), this, entry.getValue(), context, workflowVariables);
             executor.execute(executableWrapper);
         }
 

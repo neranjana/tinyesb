@@ -2,6 +2,9 @@ package org.tinyesb.orchestration;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -28,10 +31,13 @@ public class SequenceTest {
         // create a context for the sequence
         Context context = new Context();
 
+        // create a new WorkflowVariables for the sequence
+        WorkflowVariables<String, Object> workflowVariables = new ExtensibleWorkflowVariables<String, Object>(Arrays.asList("activity1-thread-id", "activity2-thread-id", "activity3-thread-id"));
+
         // when
 
         // execute the sequence
-        ExecutionStatus status = sequence.doExecute(context);
+        ExecutionStatus status = sequence.doExecute(context, workflowVariables);
 
         // then
 

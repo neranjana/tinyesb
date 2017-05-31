@@ -9,18 +9,21 @@ public class ParallelExecutableWrapper implements Runnable {
     Parallel parallel;
     Executable executable;
     Context context;
+    WorkflowVariables<String, Object> workflowVariables;
 
-    public ParallelExecutableWrapper(String activityId, Parallel parallel, Executable executable, Context context) {
+    public ParallelExecutableWrapper(String activityId, Parallel parallel, Executable executable, Context context, WorkflowVariables<String, Object> workflowVariables) {
         this.activityId = activityId;
         this.parallel = parallel;
         this.executable = executable;
         this.context = context;
+        this.workflowVariables = workflowVariables;
+
     }
 
     @Override
     public void run() {
         try {
-            ExecutionStatus executionStatus = executable.doExecute(context);
+            ExecutionStatus executionStatus = executable.doExecute(context, workflowVariables);
             parallel.nofifyTaskCompletion(activityId, executionStatus);
         } catch (ExecutionException e) {
             //TODO handle this

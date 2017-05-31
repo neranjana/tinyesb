@@ -5,7 +5,7 @@ package org.tinyesb.orchestration;
  */
 public interface Executable {
 
-    ExecutionStatus doExecute(Context context) throws ExecutionException;
+    ExecutionStatus doExecute(Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException;
 
     String getId();
 }

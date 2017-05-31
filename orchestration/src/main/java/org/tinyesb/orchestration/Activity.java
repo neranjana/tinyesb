@@ -6,7 +6,7 @@ package org.tinyesb.orchestration;
 public interface Activity extends Executable {
 
     @Override
-    ActivityExecutionStatus doExecute(Context context) throws ExecutionException;
+    ActivityExecutionStatus doExecute(Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException;
 
     ActivityExecutionStatus doCompensate(Context context, ActivityExecutionStatus activityExecutionStatus) throws CompensationException;
 

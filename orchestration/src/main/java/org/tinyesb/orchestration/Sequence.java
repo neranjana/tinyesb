@@ -19,9 +19,9 @@ public class Sequence extends AbstractExecutable {
     }
 
     @Override
-    public ExecutionStatus doExecute(Context context) throws ExecutionException {
+    public ExecutionStatus doExecute(Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException {
         for (Executable executable : executableMap.values()) {
-            executionStatus.addChild((executable.doExecute(context)));
+            executionStatus.addChild((executable.doExecute(context, workflowVariables)));
         }
         this.executionStatus.setComplete();
         return executionStatus;

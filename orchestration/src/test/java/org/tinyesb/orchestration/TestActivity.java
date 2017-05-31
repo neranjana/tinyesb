@@ -12,9 +12,9 @@ public class TestActivity implements Activity {
     }
 
     @Override
-    public ActivityExecutionStatus doExecute(Context context) throws ExecutionException {
+    public ActivityExecutionStatus doExecute(Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException {
         ActivityExecutionStatus activityExecutionStatus = new ActivityExecutionStatus(id);
-        context.setVariable(id + "-thread-id", Thread.currentThread().getName());
+        workflowVariables.put(id + "-thread-id", Thread.currentThread().getName());
         activityExecutionStatus.setComplete();
         return activityExecutionStatus;
     }
