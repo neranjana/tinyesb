@@ -29,13 +29,13 @@ public class Parallel extends Sequence {
     }
 
     @Override
-    public ExecutionStatus doExecute(Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException {
+    public ExecutionStatus doExecute(String parentExecutionPath, Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException {
 
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
 
-        for (Map.Entry<String, Executable> entry : executableMap.entrySet()) {
-            ParallelExecutableWrapper executableWrapper = new ParallelExecutableWrapper(entry.getKey(), this, entry.getValue(), context, workflowVariables);
-            executor.execute(executableWrapper);
+        for (Executable executable : executableList) {
+            ParallelExecutableRunner executableRunner = new ParallelExecutableRunner(getExecutionPath(parentExecutionPath), this, executable, context, workflowVariables);
+            executor.execute(executableRunner);
         }
 
         while (!checkFinished()) {
@@ -60,6 +60,6 @@ public class Parallel extends Sequence {
     }
 
     private boolean checkFinished() {
-        return executionStatusMap.size() == executableMap.size();
+        return executionStatusMap.size() == executableList.size();
     }
 }

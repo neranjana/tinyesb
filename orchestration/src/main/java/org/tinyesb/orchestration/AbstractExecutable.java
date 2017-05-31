@@ -5,6 +5,7 @@ package org.tinyesb.orchestration;
  */
 public abstract class AbstractExecutable implements Executable {
 
+    public static final String EXECUTION_PATH_SEPARATOR = "/";
     protected String id;
     protected ExecutionStatus executionStatus;
 
@@ -37,6 +38,10 @@ public abstract class AbstractExecutable implements Executable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getExecutionPath(String parentExecutionPath) {
+        return parentExecutionPath + EXECUTION_PATH_SEPARATOR + this.id;
     }
 
 

@@ -10,32 +10,32 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class Sequence extends AbstractExecutable {
 
-    protected Map<String, Executable> executableMap;
+    protected List<Executable> executableList;
 
     public Sequence(String id) {
         this.id = id;
         this.executionStatus = new ExecutionStatus(id);
-        this.executableMap = new ConcurrentHashMap<>();
+        this.executableList = new ArrayList<>();
     }
 
     @Override
-    public ExecutionStatus doExecute(Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException {
-        for (Executable executable : executableMap.values()) {
-            executionStatus.addChild((executable.doExecute(context, workflowVariables)));
+    public ExecutionStatus doExecute(String parentExecutionPath, Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException {
+        for (Executable executable : executableList) {
+            executionStatus.addChild((executable.doExecute(getExecutionPath(parentExecutionPath), context, workflowVariables)));
         }
         this.executionStatus.setComplete();
         return executionStatus;
     }
 
-    public void addExecutable(String id, Executable executable) {
-        this.executableMap.put(id, executable);
+    public void addExecutable(Executable executable) {
+        this.executableList.add(executable);
     }
 
-    public Map<String, Executable> getExecutableMap() {
-        return executableMap;
+    public List<Executable> getExecutableList() {
+        return executableList;
     }
 
-    public void setExecutableMap(Map<String, Executable> executableMap) {
-        this.executableMap = executableMap;
+    public void setExecutableList(List< Executable> executableList) {
+        this.executableList = executableList;
     }
 }

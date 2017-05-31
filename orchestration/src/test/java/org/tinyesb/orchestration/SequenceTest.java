@@ -24,9 +24,9 @@ public class SequenceTest {
         // create one sequance
         Sequence sequence = new Sequence("sequence1");
         // add the executables to the sequence
-        sequence.addExecutable("activity1", executable1);
-        sequence.addExecutable("activity2", executable2);
-        sequence.addExecutable("activity3", executable3);
+        sequence.addExecutable(executable1);
+        sequence.addExecutable(executable2);
+        sequence.addExecutable(executable3);
 
         // create a context for the sequence
         Context context = new Context();
@@ -37,7 +37,7 @@ public class SequenceTest {
         // when
 
         // execute the sequence
-        ExecutionStatus status = sequence.doExecute(context, workflowVariables);
+        ExecutionStatus status = sequence.doExecute("",context, workflowVariables);
 
         // then
 

@@ -26,9 +26,9 @@ class ParallelTest {
         // create one sequance
         Parallel parallel = new Parallel("parallel1", 3);
         // add the executables to the sequence
-        parallel.addExecutable("activity1", executable1);
-        parallel.addExecutable("activity2", executable2);
-        parallel.addExecutable("activity3", executable3);
+        parallel.addExecutable(executable1);
+        parallel.addExecutable(executable2);
+        parallel.addExecutable(executable3);
 
         // create a context for the sequence
         Context context = new Context();
@@ -37,7 +37,7 @@ class ParallelTest {
         WorkflowVariables<String, Object> workflowVariables = new ExtensibleWorkflowVariables<String, Object>(Arrays.asList("activity1-thread-id", "activity2-thread-id", "activity3-thread-id"));
 
         // execute the sequence
-        ExecutionStatus status = parallel.doExecute(context, workflowVariables);
+        ExecutionStatus status = parallel.doExecute("", context, workflowVariables);
 
         // then
         assertEquals(3, workflowVariables.size());
