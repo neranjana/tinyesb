@@ -4,11 +4,14 @@ import java.lang.reflect.*;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.slf4j.*;
 
 /**
  * Created by Neranjana Karunaratne on 23/05/2017.
  */
 public class Choice extends AbstractExecutable {
+
+    static Logger LOGGER = LoggerFactory.getLogger(Choice.class);
 
     private Map<Condition, Executable> conditionsMap;
     private Executable defaultExecutable;
@@ -34,6 +37,7 @@ public class Choice extends AbstractExecutable {
                     ExecutionStatus childExecutionStatus = entry.getValue().doExecute(context);
                     this.executionStatus.addChild(childExecutionStatus);
                     conditionMet = true;
+                    LOGGER.info("Choice :" + this.id + " evaluated success for condition:" + entry.getKey());
                 }
             } catch (EvaluationException e) {
                 throw new ExecutionException("Evaluation of condition failed", e);
