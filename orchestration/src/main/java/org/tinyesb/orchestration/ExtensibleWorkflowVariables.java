@@ -161,4 +161,14 @@ public class ExtensibleWorkflowVariables<K, V> implements WorkflowVariables<K, V
         }
         return isValid;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder objectStringBuilder = new StringBuilder();
+
+        for (Map.Entry<K, V> entry : this.entrySet()) {
+            objectStringBuilder.append(entry.getKey()).append(" = ").append(entry.getValue()).append(" , ");
+        }
+        return objectStringBuilder.toString();
+    }
 }

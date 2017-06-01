@@ -3,7 +3,6 @@ package org.tinyesb.orchestration;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,9 +18,9 @@ class ParallelTest {
         // given
 
         // create 3 executables
-        Executable executable1 = new TestActivity("activity1");
-        Executable executable2 = new TestActivity("activity2");
-        Executable executable3 = new TestActivity("activity3");
+        Executable executable1 = new TestParallelActivity("activity1");
+        Executable executable2 = new TestParallelActivity("activity2");
+        Executable executable3 = new TestParallelActivity("activity3");
 
         // create one sequance
         Parallel parallel = new Parallel("parallel1", 3);

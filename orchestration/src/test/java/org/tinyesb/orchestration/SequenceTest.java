@@ -2,7 +2,6 @@ package org.tinyesb.orchestration;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
@@ -17,9 +16,9 @@ public class SequenceTest {
         // given
 
         // create 3 executables
-        Executable executable1 = new TestActivity("activity1");
-        Executable executable2 = new TestActivity("activity2");
-        Executable executable3 = new TestActivity("activity3");
+        Executable executable1 = new TestParallelActivity("activity1");
+        Executable executable2 = new TestParallelActivity("activity2");
+        Executable executable3 = new TestParallelActivity("activity3");
 
         // create one sequance
         Sequence sequence = new Sequence("sequence1");

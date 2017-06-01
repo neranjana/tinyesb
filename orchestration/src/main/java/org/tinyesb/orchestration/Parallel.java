@@ -1,5 +1,8 @@
 package org.tinyesb.orchestration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -11,7 +14,10 @@ import java.util.concurrent.Executors;
 public class Parallel extends Sequence {
 
 
+    static Logger LOGGER = LoggerFactory.getLogger(Parallel.class);
+
     public static final int DEFAULT_THREAD_COUNT = 5;
+    public static final int CHECK_FINISHED_PERIOD = 50;
     private int threadCount;
     private Map<String, ExecutionStatus> executionStatusMap;
 
@@ -40,7 +46,7 @@ public class Parallel extends Sequence {
 
         while (!checkFinished()) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(CHECK_FINISHED_PERIOD);
             } catch (InterruptedException e) {
                 //TODO handle this
                 e.printStackTrace();
@@ -60,6 +66,7 @@ public class Parallel extends Sequence {
     }
 
     private boolean checkFinished() {
+
         return executionStatusMap.size() == executableList.size();
     }
 }

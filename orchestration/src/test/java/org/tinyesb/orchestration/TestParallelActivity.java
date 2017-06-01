@@ -6,14 +6,14 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by Neranjana Karunaratne on 23/05/2017.
  */
-public class TestActivity implements Activity {
+public class TestParallelActivity implements Activity {
 
-    static Logger LOGGER = LoggerFactory.getLogger(TestActivity.class);
+    static Logger LOGGER = LoggerFactory.getLogger(TestParallelActivity.class);
 
 
     private String id;
 
-    public TestActivity(String id) {
+    public TestParallelActivity(String id) {
         this.id = id;
     }
 
@@ -22,7 +22,7 @@ public class TestActivity implements Activity {
         ActivityExecutionStatus activityExecutionStatus = new ActivityExecutionStatus(id);
         workflowVariables.put(id + "-thread-id", Thread.currentThread().getName());
         activityExecutionStatus.setComplete();
-        LOGGER.info("TestActivity in " + parentExecutionPath + "/" + id);
+        LOGGER.info("TestParallelActivity in " + parentExecutionPath + "/" + id);
         return activityExecutionStatus;
     }
 

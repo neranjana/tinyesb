@@ -26,7 +26,6 @@ public class ForEachExecutableWrapper extends AbstractExecutable {
 
     @Override
     public ExecutionStatus doExecute(String parentExecutionPath, Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException {
-        LOGGER.info("Parent Execution Path " + parentExecutionPath);
         WorkflowVariables<String, Object> localWorkflowVariables = new ExtensibleWorkflowVariables(Arrays.asList(instanceVariableName), workflowVariables);
         localWorkflowVariables.put(instanceVariableName, instanceVariable);
         return executable.doExecute(getExecutionPath(parentExecutionPath), context, localWorkflowVariables);

@@ -12,8 +12,8 @@ class ChoiceTest {
     @org.junit.jupiter.api.Test
     void doExecuteWithFirstConditionFalseSecondConditionTrue() throws OrchestrationConfigurationException, ExecutionException {
         Choice choice = new Choice("Choice1");
-        choice.addCondition(new FalseCondition(), new TestActivity("Activity1"));
-        choice.addCondition(new TrueCondition(), new TestActivity("Activity2"));
+        choice.addCondition(new FalseCondition(), new TestParallelActivity("Activity1"));
+        choice.addCondition(new TrueCondition(), new TestParallelActivity("Activity2"));
 
         ExecutionStatus executionStatus = choice.doExecute("", new Context(), new ExtensibleWorkflowVariables(new ArrayList<String>(Arrays.asList("Activity1-thread-id", "Activity2-thread-id", "Activity3-thread-id"))));
 
@@ -26,9 +26,9 @@ class ChoiceTest {
     @org.junit.jupiter.api.Test
     void doExecuteWithTwoFalseConditionsAndADefault() throws OrchestrationConfigurationException, ExecutionException {
         Choice choice = new Choice("Choice1");
-        choice.addCondition(new FalseCondition(), new TestActivity("Activity1"));
-        choice.addCondition(new FalseCondition(), new TestActivity("Activity2"));
-        choice.addDefault(new TestActivity("Activity3"));
+        choice.addCondition(new FalseCondition(), new TestParallelActivity("Activity1"));
+        choice.addCondition(new FalseCondition(), new TestParallelActivity("Activity2"));
+        choice.addDefault(new TestParallelActivity("Activity3"));
 
         ExecutionStatus executionStatus = choice.doExecute("",new Context(), new ExtensibleWorkflowVariables(new ArrayList<String>(Arrays.asList("Activity1-thread-id", "Activity2-thread-id", "Activity3-thread-id"))));
 
