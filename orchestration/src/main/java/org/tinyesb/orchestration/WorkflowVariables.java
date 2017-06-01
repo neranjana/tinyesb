@@ -7,4 +7,6 @@ import java.util.Map;
  */
 public interface WorkflowVariables<K, V> extends Map<K, V> {
     boolean isValidKey(K key);
+
+    WorkflowVariables<K, V> createSnapshot();
 }

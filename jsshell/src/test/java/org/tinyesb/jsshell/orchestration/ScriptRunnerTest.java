@@ -1,9 +1,9 @@
 package org.tinyesb.jsshell.orchestration;
 
 import org.junit.jupiter.api.Test;
-import org.tinyesb.orchestration.ActivityExecutionStatus;
-import org.tinyesb.orchestration.Context;
-import org.tinyesb.orchestration.ExecutionStatus;
+import org.tinyesb.orchestration.*;
+
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,21 +14,21 @@ class ScriptRunnerTest {
     @Test
     void doExecute() throws Exception {
 
-        String executeScript = "context.variables.var3='value3'; context.variables.var1=context.variables.var2;";
+        String executeScript = "workflowVariables.var3='value3'; workflowVariables.var1=workflowVariables.var2;";
 
-        // given
+        //given
         Context context = new Context();
-        context.setVariable("var1", "value1");
-        context.setVariable("var2", "value2");
+        WorkflowVariables<String, Object> workflowVariables = new ExtensibleWorkflowVariables<String, Object>(Arrays.asList("var1", "var2", "var3"));
+        workflowVariables.put("var1", "value1");
+        workflowVariables.put("var2", "value2");
 
         //when
         ScriptRunner scriptRunner = new ScriptRunner(executeScript, null, null);
-        ActivityExecutionStatus status = scriptRunner.doExecute(context);
-        System.out.println(context.getVariable("var3"));
+        ActivityExecutionStatus status = scriptRunner.doExecute("", context, workflowVariables);
 
         //then
-        assertEquals("value2", context.getVariable("var1"));
-        assertEquals("value3", context.getVariable("var3"));
+        assertEquals("value2", workflowVariables.get("var1"));
+        assertEquals("value3", workflowVariables.get("var3"));
         assertTrue(status.isComplete());
         assertTrue(status.isExecutionSuccess());
     }

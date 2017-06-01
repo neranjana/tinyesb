@@ -275,4 +275,22 @@ class ExtensibleWorkflowVariablesTest {
 
     }
 
+    @Test
+    void createSnapshot() throws Exception {
+        WorkflowVariables<String, String> snapshot = variablesLevel3.createSnapshot();
+        for (Map.Entry<String, String> entry : variablesLevel3.entrySet()) {
+            assertEquals(entry.getValue(), snapshot.get(entry.getKey()));
+        }
+
+        // Change value in original workflowVariables
+        variablesLevel3.put(key2, "modifiedvalue2");
+        variablesLevel3.put(key13, "modifiedvalue13");
+        variablesLevel3.put(key21, "modifiedvalue21");
+
+        assertEquals(value2, snapshot.get(key2));
+        assertEquals(value13, snapshot.get(key13));
+        assertEquals(value21, snapshot.get(key21));
+
+    }
+
 }

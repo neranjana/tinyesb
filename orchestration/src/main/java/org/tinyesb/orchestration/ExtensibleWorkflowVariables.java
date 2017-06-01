@@ -163,6 +163,16 @@ public class ExtensibleWorkflowVariables<K, V> implements WorkflowVariables<K, V
     }
 
     @Override
+    public WorkflowVariables<K, V> createSnapshot() {
+
+        WorkflowVariables<K, V> snapshot = new ExtensibleWorkflowVariables<>(new ArrayList(this.keySet()));
+        for (Map.Entry<K, V> entry : this.entrySet()) {
+            snapshot.put(entry.getKey(), entry.getValue());
+        }
+        return snapshot;
+    }
+
+    @Override
     public String toString() {
         StringBuilder objectStringBuilder = new StringBuilder();
 

@@ -8,8 +8,30 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class Context {
 
+    private Map<String, Activity> successfullyCompletedActivityMap;
+    private Map<String, Activity> failedActivityMap;
+
+
     public Context() {
 
+        successfullyCompletedActivityMap = new ConcurrentHashMap<>();
+        failedActivityMap = new ConcurrentHashMap<>();
+    }
+
+    public void addSuccessfullyCompletedActivity(String executionPath, Activity activity) {
+        this.successfullyCompletedActivityMap.put(executionPath, activity);
+    }
+
+    public void addFailedActivity(String executionPath, Activity activity) {
+        this.failedActivityMap.put(executionPath, activity);
+    }
+
+    public Map<String, Activity> getSuccessfullyCompletedActivityMap() {
+        return successfullyCompletedActivityMap;
+    }
+
+    public Map<String, Activity> getFailedActivityMap() {
+        return failedActivityMap;
     }
 
     @Override

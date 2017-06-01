@@ -11,6 +11,7 @@ public class ExecutionStatus {
     private String executableId;
     private boolean isComplete;
     private List<ExecutionStatus> children;
+    private Throwable throwable;
 
     public ExecutionStatus(String executableId) {
         this.executableId = executableId;
@@ -27,6 +28,14 @@ public class ExecutionStatus {
 
     public void setComplete() {
         isComplete = true;
+    }
+
+    public void setNotComplete() {
+        this.isComplete = false;
+    }
+
+    public void setError(Throwable throwable) {
+        this.throwable = throwable;
     }
 
     public void addChild(ExecutionStatus child) {

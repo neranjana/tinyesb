@@ -14,7 +14,7 @@ public class ScriptRunner extends AbstractExecutable implements Activity {
 
     public static final String EMPTY_SCRIPT = "";
     public static final String DEFAULT_JS_ENGINE_NAME = "nashorn";
-    public static final String SCRIPT_BEGINING = "var doExecute = function(context) { ";
+    public static final String SCRIPT_BEGINING = "var doExecute = function(workflowVariables) { ";
     public static final String SCRIPT_END = " };";
 
     private String executeScript;
@@ -39,24 +39,27 @@ public class ScriptRunner extends AbstractExecutable implements Activity {
         }
     }
 
+
     @Override
-    public ActivityExecutionStatus doExecute(Context context) throws ExecutionException {
+    public ActivityExecutionStatus doExecute(String parentExecutionPath, Context context, WorkflowVariables<String, Object> workflowVariables) throws ExecutionException {
         boolean executionSuccess = false;
         ScriptEngine engine = createScriptEngine();
         ActivityExecutionStatus executionStatus = new ActivityExecutionStatus(id);
         try {
             engine.eval(SCRIPT_BEGINING + executeScript + SCRIPT_END);
             Invocable invocable = (Invocable) engine;
-            Object success = invocable.invokeFunction("doExecute", context);
+            Object success = invocable.invokeFunction("doExecute", workflowVariables);
             if (success!= null && success instanceof Boolean) {
                 executionSuccess = (Boolean) success;
 
             }
-        } catch (ScriptException | NoSuchMethodException e) {
-            e.printStackTrace();
+            executionStatus.setComplete();
+            executionStatus.setExecutionSuccess();
+        } catch (Throwable throwable) {
+            executionStatus.setError(throwable);
+            executionStatus.setNotComplete();
         }
-        executionStatus.setComplete();
-        executionStatus.setExecutionSuccess();
+
         return executionStatus;
     }
 
