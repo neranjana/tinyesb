@@ -33,7 +33,7 @@ public class Choice extends AbstractExecutable {
         while (!conditionMet && conditionIterator.hasNext()) {
             Map.Entry<Condition, Executable> entry = conditionIterator.next();
             try {
-                if (entry.getKey().evaluate(context)) {
+                if (entry.getKey().evaluate(workflowVariables)) {
                     ExecutionStatus childExecutionStatus = entry.getValue().doExecute(getExecutionPath(parentExecutionPath), context, workflowVariables);
                     this.executionStatus.addChild(childExecutionStatus);
                     conditionMet = true;

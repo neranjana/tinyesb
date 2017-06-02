@@ -5,5 +5,5 @@ package org.tinyesb.orchestration;
  */
 public interface Condition {
 
-    boolean evaluate(Context context) throws EvaluationException;
+    boolean evaluate(WorkflowVariables<String, Object> workflowVariables) throws EvaluationException;
 }

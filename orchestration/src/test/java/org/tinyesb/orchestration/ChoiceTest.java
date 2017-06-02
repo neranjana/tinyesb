@@ -41,7 +41,7 @@ class ChoiceTest {
     private class TrueCondition implements Condition {
 
         @Override
-        public boolean evaluate(Context context) throws EvaluationException {
+        public boolean evaluate(WorkflowVariables<String, Object> workflowVariables) throws EvaluationException {
             return true;
         }
     }
@@ -49,7 +49,7 @@ class ChoiceTest {
     private class FalseCondition implements Condition {
 
         @Override
-        public boolean evaluate(Context context) throws EvaluationException {
+        public boolean evaluate(WorkflowVariables<String, Object> workflowVariables) throws EvaluationException {
             return false;
         }
     }

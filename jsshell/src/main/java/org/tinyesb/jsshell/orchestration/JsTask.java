@@ -11,16 +11,9 @@ import javax.script.ScriptEngineManager;
 /**
  * Created by Neranjana Karunaratne on 2/06/2017.
  */
-public class ScriptingTask implements Task {
+public class JsTask extends JsExecutable implements Task {
 
-    public static final String EMPTY_SCRIPT = "";
-    public static final String DEFAULT_JS_ENGINE_NAME = "nashorn";
-    public static final String SCRIPT_BEGINING = "var doExecute = function(workflowVariables) { ";
-    public static final String SCRIPT_END = " };";
-
-    private String scriptBody;
-
-    public ScriptingTask(String scriptBody) {
+    public JsTask(String scriptBody) {
         if (scriptBody != null) {
             this.scriptBody = scriptBody;
         } else {
