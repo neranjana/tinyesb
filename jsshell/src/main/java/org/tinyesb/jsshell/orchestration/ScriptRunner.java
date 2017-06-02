@@ -5,7 +5,6 @@ import org.tinyesb.orchestration.*;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 
 /**
  * Created by Neranjana Karunaratne on 27/05/2017.
@@ -19,9 +18,9 @@ public class ScriptRunner extends AbstractExecutable implements Activity {
 
     private String executeScript;
     private String compensateScript;
-    private String finalyzeScript;
+    private String confirmScript;
 
-    public ScriptRunner(String executeScript, String compensateScript, String finalyzeScript) {
+    public ScriptRunner(String executeScript, String compensateScript, String confirmScript) {
         if (executeScript != null && !executeScript.isEmpty()) {
             this.executeScript = executeScript;
         } else {
@@ -32,10 +31,10 @@ public class ScriptRunner extends AbstractExecutable implements Activity {
         } else {
             this.compensateScript = EMPTY_SCRIPT;
         }
-        if (finalyzeScript != null && !finalyzeScript.isEmpty()) {
-            this.finalyzeScript = finalyzeScript;
+        if (confirmScript != null && !confirmScript.isEmpty()) {
+            this.confirmScript = confirmScript;
         } else {
-            finalyzeScript = EMPTY_SCRIPT;
+            confirmScript = EMPTY_SCRIPT;
         }
     }
 
@@ -70,7 +69,7 @@ public class ScriptRunner extends AbstractExecutable implements Activity {
     }
 
     @Override
-    public ActivityExecutionStatus doFinalyze(Context context, ActivityExecutionStatus activityExecutionStatus) throws FinalyzationException {
+    public ActivityExecutionStatus doConfirm(Context context, ActivityExecutionStatus activityExecutionStatus) throws ConfirmationException {
         // TODO implement
         return null;
     }

@@ -39,7 +39,7 @@ class ScriptRunnerTest {
     }
 
     @Test
-    void doFinalyze() {
+    void doConfirm() {
         // TODO implement
     }
 

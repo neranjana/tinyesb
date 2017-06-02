@@ -32,7 +32,7 @@ public class TestParallelActivity implements Activity {
     }
 
     @Override
-    public ActivityExecutionStatus doFinalyze(Context context, ActivityExecutionStatus activityExecutionStatus) throws FinalyzationException {
+    public ActivityExecutionStatus doConfirm(Context context, ActivityExecutionStatus activityExecutionStatus) throws ConfirmationException {
         return activityExecutionStatus;
     }
 

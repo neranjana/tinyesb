@@ -6,14 +6,14 @@ package org.tinyesb.orchestration;
 public class TaskRunningActivity extends AbstractExecutable implements Activity {
 
     private Task mainExecutableTask;
-    private Task finalyzationTask;
+    private Task confirmationTask;
     private Task compensationTask;
     private WorkflowVariables<String, Object> workflowVariablesSnapshot;
 
-    public TaskRunningActivity(String id, Task mainExecutableTask, Task finalyzationTask, Task compensationTask) {
+    public TaskRunningActivity(String id, Task mainExecutableTask, Task confirmationTask, Task compensationTask) {
         this.id = id;
         this.mainExecutableTask = mainExecutableTask;
-        this.finalyzationTask = finalyzationTask;
+        this.confirmationTask = confirmationTask;
         this.compensationTask = compensationTask;
         this.executionStatus = new ExecutionStatus(id);
     }
@@ -48,7 +48,7 @@ public class TaskRunningActivity extends AbstractExecutable implements Activity 
     }
 
     @Override
-    public ActivityExecutionStatus doFinalyze(Context context, ActivityExecutionStatus activityExecutionStatus) throws FinalyzationException {
+    public ActivityExecutionStatus doConfirm(Context context, ActivityExecutionStatus activityExecutionStatus) throws ConfirmationException {
         return null;
     }
 

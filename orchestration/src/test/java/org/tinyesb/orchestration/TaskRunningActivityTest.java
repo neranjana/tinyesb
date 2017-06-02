@@ -86,7 +86,7 @@ class TaskRunningActivityTest {
     }
 
     @Test
-    void doFinalyze() {
+    void doConfirm() {
     }
 
 }

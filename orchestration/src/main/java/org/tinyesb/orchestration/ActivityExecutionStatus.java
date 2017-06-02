@@ -7,7 +7,7 @@ public class ActivityExecutionStatus extends ExecutionStatus {
 
     private boolean isCompensationComplete;
 
-    private boolean isFinalyzationComplete;
+    private boolean isConfirmationComplete;
 
     private boolean isExecutionSuccess;
 
@@ -24,12 +24,12 @@ public class ActivityExecutionStatus extends ExecutionStatus {
         isCompensationComplete = compensationComplete;
     }
 
-    public boolean isFinalyzationComplete() {
-        return isFinalyzationComplete;
+    public boolean isConfirmationComplete() {
+        return isConfirmationComplete;
     }
 
-    public void setFinalyzationComplete(boolean finalyzationComplete) {
-        isFinalyzationComplete = finalyzationComplete;
+    public void setConfirmationComplete(boolean confirmationComplete) {
+        isConfirmationComplete = confirmationComplete;
     }
 
     public boolean isExecutionSuccess() {
@@ -48,13 +48,13 @@ public class ActivityExecutionStatus extends ExecutionStatus {
         ActivityExecutionStatus that = (ActivityExecutionStatus) o;
 
         if (isCompensationComplete != that.isCompensationComplete) return false;
-        return isFinalyzationComplete == that.isFinalyzationComplete;
+        return isConfirmationComplete == that.isConfirmationComplete;
     }
 
     @Override
     public int hashCode() {
         int result = (isCompensationComplete ? 1 : 0);
-        result = 31 * result + (isFinalyzationComplete ? 1 : 0);
+        result = 31 * result + (isConfirmationComplete ? 1 : 0);
         return result;
     }
 
@@ -62,7 +62,7 @@ public class ActivityExecutionStatus extends ExecutionStatus {
     public String toString() {
         return "ActivityExecutionStatus{" +
                 "isCompensationComplete=" + isCompensationComplete +
-                ", isFinalyzationComplete=" + isFinalyzationComplete +
+                ", isConfirmationComplete=" + isConfirmationComplete +
                 '}';
     }
 }
