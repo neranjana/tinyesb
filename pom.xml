@@ -13,6 +13,7 @@
         <module>plugintypes</module>
         <module>java2yaml</module>
         <module>jsshell</module>
+        <module>workflowbuilder</module>
     </modules>
 
     <dependencies>

@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/orchestration/orchestration.iml" filepath="$PROJECT_DIR$/orchestration/orchestration.iml" />
       <module fileurl="file://$PROJECT_DIR$/plugintypes/plugintypes.iml" filepath="$PROJECT_DIR$/plugintypes/plugintypes.iml" />
       <module fileurl="file://$PROJECT_DIR$/tinyesb.iml" filepath="$PROJECT_DIR$/tinyesb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/workflowbuilder/workflowbuilder.iml" filepath="$PROJECT_DIR$/workflowbuilder/workflowbuilder.iml" />
     </modules>
   </component>
 </project>
